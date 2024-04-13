@@ -1,0 +1,40 @@
+.slot-machine {
+	text-align: center;
+	margin-top: 50px;
+	height: 200px;
+}
+
+.reels {
+	display: flex;
+	justify-content: center;
+	background-color: antiquewhite;
+}
+
+.reel {
+	width: 150px;
+	height: 150px;
+	margin: 0 10px;
+	position: relative;
+}
+
+.inner-reel {
+	width: 80%;
+	animation: spin infinite linear;
+}
+
+.symbol {
+	font-size: 3rem;
+	height: 20%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+@keyframes spin {
+	0% {
+		transform: translateY(0);
+	}
+	100% {
+		transform: translateY(-100%);
+	}
+}
