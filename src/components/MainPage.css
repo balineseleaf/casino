@@ -33,5 +33,16 @@
 	font-weight: 400;
 	background-color: yellow;
 	border-radius: 10px;
-	border: 1px solid yellow;
+	box-shadow: 0 7px 0 #cecf00;
+}
+
+.button:hover {
+	transform: translateY(0px);
+	opacity: 0.9;
+}
+
+.button:active {
+	transform: translateY(5px);
+	transition: all 0.2s ease-in-out;
+	box-shadow: 0 3px 0 #cecf00;
 }

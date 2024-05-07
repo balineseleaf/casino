@@ -10,9 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fireworks-js/react": "^2.10.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.22.3"
+    "react-router-dom": "^6.22.3",
+    "react-slot-counter": "^2.2.5",
+    "react-spring": "^9.7.3"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",
