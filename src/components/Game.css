@@ -225,6 +225,7 @@
 	border-radius: 5px;
 	border: 2px solid #1c1c1c;
 }
+
 .roof {
 	height: 20px;
 	width: 372px;
@@ -239,4 +240,9 @@
 	border-right: 2px solid #1c1c1c;
 	border-top-left-radius: 8px;
 	border-top-right-radius: 8px;
+}
+
+.bonus-amount {
+	color: #f8f8f8;
+	font-size: 25px;
 }

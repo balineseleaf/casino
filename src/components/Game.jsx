@@ -10,21 +10,42 @@ import dizzy from '../assets/symbols/Dizzy.svg';
 import { BalanceContext } from '../context/BalanceContext';
 import { mapFromIconToNumbers } from './utils/MapFromIconsToNumbers';
 
-const BASE_URL = 'http://localhost:5001';
+const BASE_URL = 'http://localhost:5002';
 
 const Game = () => {
 	const { currentBalance, deposit } = useContext(BalanceContext);
 	const [numbers, setNumbers] = useState([]);
+	const [bonus, setBonus] = useState(0);
+	const [userBalance, setUserBalance] = useState(0);
+	const [winAmount, setWinAmount] = useState(0);
 	const [iconsByNumbersObj, setIconsByNumbersObj] = useState({});
 	const [count, setCount] = useState(1);
 	const slot5Ref = React.useRef(null);
 	const [isSpinning, setIsSpinning] = useState(false);
 	const [disableCountButton, setDisableCountButton] = useState(true);
+	const userId = 509294090;
+	const betValue = count;
 
-	const getNumbers = async () => {
-		const response = await fetch(`${BASE_URL}/getrandom`);
-		const numbers = await response.json();
-		return numbers;
+	const getNumbers = async (userId, betValue) => {
+		try {
+			const response = await fetch(`${BASE_URL}/betdone`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					userId: userId,
+					betValue: betValue,
+				}),
+			});
+
+			const responseJSON = await response.json();
+			console.log(responseJSON);
+			return responseJSON;
+		} catch (error) {
+			console.log('Error getting numbers:', error);
+			throw error;
+		}
 	};
 
 	useEffect(() => {
@@ -38,11 +59,21 @@ const Game = () => {
 		setIconsByNumbersObj(orderedObjectWithIconForReels);
 	}, [numbers]);
 
+	useEffect(() => {
+		if (!isSpinning && winAmount > 0) {
+			deposit(winAmount);
+			setWinAmount(0);
+		}
+	}, [isSpinning, winAmount, deposit]);
+
 	const handleSpinClick = async () => {
 		setIsSpinning(true);
 		try {
-			const arrayOfNumbers = await getNumbers();
-			setNumbers(arrayOfNumbers);
+			const answerFromServer = await getNumbers(userId, betValue);
+			setNumbers(answerFromServer?.combination);
+			setBonus(answerFromServer?.bonusAmount);
+			setWinAmount(answerFromServer?.winAmount);
+			setUserBalance(answerFromServer?.userBalance);
 		} catch (error) {
 			console.log(error);
 		} finally {
@@ -67,13 +98,12 @@ const Game = () => {
 			setDisableCountButton(!disableCountButton);
 		}
 	};
-	console.log('game');
 
 	return (
 		<div className='game-container'>
 			<div className='desk'></div>
 			<div className='game-info'>
-				<h2 className='game-header'>Ваш баланс: {currentBalance} usdt</h2>
+				<h2 className='game-header'>Ваш баланс: {Math.floor(userBalance)} usdt</h2>
 			</div>
 
 			<div className='playground'>
@@ -149,6 +179,7 @@ const Game = () => {
 							/>,
 						]}
 					/>
+					<p className='bonus-amount'>{bonus !== null ? `Your Bonus: ${bonus} usdt ! Hooray` : `No bonus :(`}</p>
 				</div>
 			</div>
 			<div className='connector'></div>

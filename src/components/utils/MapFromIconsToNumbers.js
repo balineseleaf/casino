@@ -10,6 +10,6 @@ export const mapFromIconToNumbers = new Map();
 mapFromIconToNumbers.set(1, cherry);
 mapFromIconToNumbers.set(2, hotPepper);
 mapFromIconToNumbers.set(3, money);
-mapFromIconToNumbers.set(4, redSeven);
+mapFromIconToNumbers.set(4, dizzy);
 mapFromIconToNumbers.set(5, lemon);
-mapFromIconToNumbers.set(6, dizzy);
+mapFromIconToNumbers.set(6, redSeven);

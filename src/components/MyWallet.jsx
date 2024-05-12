@@ -10,6 +10,28 @@ const MyWallet = () => {
 		deposit(100);
 	};
 
+	const getBalance = async (userId, betValue) => {
+		try {
+			const response = await fetch(`${BASE_URL}/betdone`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					userId: userId,
+					betValue: betValue,
+				}),
+			});
+
+			const responseJSON = await response.json();
+			console.log(responseJSON);
+			return responseJSON;
+		} catch (error) {
+			console.log('Error getting numbers:', error);
+			throw error;
+		}
+	};
+
 	console.log('mywallet', currentBalance);
 	return (
 		<div className='wallet-container'>
