@@ -1,0 +1,14 @@
+.rules-container {
+	display: flex;
+	flex-direction: column;
+	width: 560px;
+	margin: 0 auto;
+	background-color: #330d4a;
+	position: relative;
+	height: 654px;
+}
+
+.rules-text {
+	color: yellow;
+	font-size: 28px;
+}

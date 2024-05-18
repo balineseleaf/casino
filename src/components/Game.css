@@ -5,14 +5,7 @@
 	margin: 0 auto;
 	background-color: #330d4a;
 	position: relative;
-	height: 597px;
-	/* background-image: url('./../assets/bg_small.jpg'); */
-	/* height: 597px;
-	position: relative;
-	background-image: url(../assets/casino.jpg);
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: cover; */
+	height: 654px;
 }
 
 .game-info {
@@ -21,13 +14,13 @@
 	margin: 0 auto;
 	border-radius: 10px;
 	position: relative;
-	top: 50px;
+	top: 40px;
 	filter: drop-shadow(0px 3px 3px #f8f8f8);
 }
 
 .game-buttons {
 	position: absolute;
-	bottom: 35px;
+	bottom: 92px;
 	display: flex;
 	flex-direction: column;
 	left: 50%;
@@ -199,7 +192,8 @@
 .desk {
 	position: absolute;
 	width: 100%;
-	bottom: 0;
+	bottom: 10px;
+	margin-bottom: 50px;
 	border-left: 100px solid transparent;
 	border-right: 100px solid transparent;
 	border-bottom: 232px solid #960018;
@@ -218,7 +212,7 @@
 	height: 20px;
 	width: 372px;
 	position: absolute;
-	top: 347px;
+	top: 345px;
 	left: 94px;
 	background-color: grey;
 	opacity: 1;

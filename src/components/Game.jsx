@@ -10,7 +10,8 @@ import dizzy from '../assets/symbols/Dizzy.svg';
 import { BalanceContext } from '../context/BalanceContext';
 import { mapFromIconToNumbers } from './utils/MapFromIconsToNumbers';
 
-const BASE_URL = 'http://localhost:5002';
+const BASE_URL = 'https://47f0-5-18-98-27.ngrok-free.app';
+const tg = window.Telegram.WebApp;
 
 const Game = () => {
 	const { currentBalance, deposit } = useContext(BalanceContext);
@@ -23,7 +24,8 @@ const Game = () => {
 	const slot5Ref = React.useRef(null);
 	const [isSpinning, setIsSpinning] = useState(false);
 	const [disableCountButton, setDisableCountButton] = useState(true);
-	const userId = 509294090;
+	const userId = tg.initDataUnsafe?.user?.id;
+	console.log(userId);
 	const betValue = count;
 
 	const getNumbers = async (userId, betValue) => {
@@ -104,6 +106,7 @@ const Game = () => {
 			<div className='desk'></div>
 			<div className='game-info'>
 				<h2 className='game-header'>Ваш баланс: {Math.floor(userBalance)} usdt</h2>
+				{/* <p style={{ color: 'yellow' }}>Ваш Id:{tg.initDataUnsafe?.user?.id}</p> */}
 			</div>
 
 			<div className='playground'>

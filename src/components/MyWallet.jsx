@@ -39,23 +39,18 @@ const MyWallet = () => {
 				<h2 className='wallet-header'>Мой Кошелек</h2>
 				<p className='wallet-balance'>Мой баланс: {currentBalance} USDT</p>
 			</div>
-			<div className='buttons'>
+			<div className='buttons-wallet'>
 				<button
 					type='button'
-					className='button'
+					className='button-wallet'
 					onClick={handleDeposit}>
 					ПОПОЛНИТЬ
 				</button>
 				<button
 					type='button'
-					className='button'>
+					className='button-wallet'>
 					ВЫВЕСТИ
 				</button>
-				<Link
-					to='/game'
-					className='button'>
-					ИГРАТЬ
-				</Link>
 			</div>
 		</div>
 	);

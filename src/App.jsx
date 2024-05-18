@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import './App.css';
 import Game from './components/Game';
-import MainPage from './components/MainPage';
+import Menu from './components/Menu';
+import Rules from './components/Rules';
 import MyWallet from './components/MyWallet';
 import { Routes, Route } from 'react-router-dom';
 import { BalanceContext } from './context/BalanceContext';
@@ -15,20 +16,23 @@ function App() {
 
 	return (
 		<BalanceContext.Provider value={{ currentBalance, deposit }}>
-			<Routes>
-				<Route
-					path='/'
-					element={<MainPage />}
-				/>
-				<Route
-					path='/wallet'
-					element={<MyWallet />}
-				/>
-				<Route
-					path='/game'
-					element={<Game />}
-				/>
-			</Routes>
+			<div className='app'>
+				<Menu />
+				<Routes>
+					<Route
+						path='/'
+						element={<Game />}
+					/>
+					<Route
+						path='/wallet'
+						element={<MyWallet />}
+					/>
+					<Route
+						path='/rules'
+						element={<Rules />}
+					/>
+				</Routes>
+			</div>
 		</BalanceContext.Provider>
 	);
 }
