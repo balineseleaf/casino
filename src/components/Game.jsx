@@ -11,7 +11,7 @@ import { BalanceContext } from '../context/BalanceContext';
 import { mapFromIconToNumbers } from './utils/MapFromIconsToNumbers';
 
 const BASE_URL = 'https://47f0-5-18-98-27.ngrok-free.app';
-const tg = window.Telegram.WebApp;
+//const tg = window.Telegram.WebApp;
 
 const Game = () => {
 	const { currentBalance, deposit } = useContext(BalanceContext);
@@ -24,7 +24,10 @@ const Game = () => {
 	const slot5Ref = React.useRef(null);
 	const [isSpinning, setIsSpinning] = useState(false);
 	const [disableCountButton, setDisableCountButton] = useState(true);
-	const userId = tg.initDataUnsafe?.user?.id;
+	const [showBonusWindow, setShowBonusWindow] = useState(false);
+	// const userId = tg.initDataUnsafe?.user?.id;
+	const userId = 509294090;
+
 	console.log(userId);
 	const betValue = count;
 
@@ -68,6 +71,15 @@ const Game = () => {
 		}
 	}, [isSpinning, winAmount, deposit]);
 
+	useEffect(() => {
+		if (showBonusWindow) {
+			const bonusTimer = setTimeout(() => {
+				setShowBonusWindow(false);
+			}, 5000);
+			return () => clearTimeout(bonusTimer);
+		}
+	}, [showBonusWindow]);
+
 	const handleSpinClick = async () => {
 		setIsSpinning(true);
 		try {
@@ -76,6 +88,7 @@ const Game = () => {
 			setBonus(answerFromServer?.bonusAmount);
 			setWinAmount(answerFromServer?.winAmount);
 			setUserBalance(answerFromServer?.userBalance);
+			setShowBonusWindow(!!answerFromServer?.bonusAmount);
 		} catch (error) {
 			console.log(error);
 		} finally {
@@ -103,6 +116,11 @@ const Game = () => {
 
 	return (
 		<div className='game-container'>
+			{showBonusWindow && (
+				<div className={`bonus-window ${showBonusWindow ? 'show' : ''}`}>
+					<p className='bonus-text'>{`Bonus: ${Math.floor(bonus)} USDT!`}</p>
+				</div>
+			)}
 			<div className='desk'></div>
 			<div className='game-info'>
 				<h2 className='game-header'>Ваш баланс: {Math.floor(userBalance)} usdt</h2>
@@ -182,7 +200,9 @@ const Game = () => {
 							/>,
 						]}
 					/>
-					<p className='bonus-amount'>{bonus !== null ? `Your Bonus: ${bonus} usdt ! Hooray` : `No bonus :(`}</p>
+					{/* <p className='bonus-amount'>
+						{bonus !== null ? `Your Bonus: ${Math.floor(bonus)} USDT ! Hooray` : `No bonus :(`}
+					</p> */}
 				</div>
 			</div>
 			<div className='connector'></div>

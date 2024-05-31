@@ -4,5 +4,9 @@
 
 .app {
 	height: 654px;
+	background-color: #330d4a;
+	max-width: 560px;
 	position: relative;
+	margin: 0 auto;
+	flex: auto;
 }

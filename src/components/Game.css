@@ -1,11 +1,12 @@
 .game-container {
 	display: flex;
 	flex-direction: column;
-	width: 560px;
 	margin: 0 auto;
-	background-color: #330d4a;
 	position: relative;
 	height: 654px;
+	width: 100%;
+	/* background-color: #330d4a; */
+	/* flex: auto; */
 }
 
 .game-info {
@@ -43,6 +44,7 @@
 	display: flex;
 	flex-direction: column;
 	margin-left: 10px;
+	width: 40%;
 }
 
 .bid-buttons {
@@ -61,6 +63,12 @@
 	font-weight: 400;
 	margin: 0;
 	padding: 0;
+}
+
+@media (max-width: 470px) {
+	.bid-text {
+		font-size: 20px;
+	}
 }
 
 .slot-header {
@@ -82,7 +90,7 @@
 	vertical-align: middle;
 	padding-top: 40px;
 	margin: 0 auto;
-	width: 470px;
+	width: 90%;
 	border: 2px solid #1c1c1c;
 	background-color: #960018;
 	border-radius: 30px;
@@ -96,12 +104,18 @@
 	box-sizing: border-box;
 	display: block;
 	width: 120px;
-	height: 110px;
+	height: 90px;
 	padding: 8px;
 	/* padding-right: 10px; */
 	border-radius: 5px;
 	border-left: 2px solid #1c1c1c;
 	border-right: 2px solid #1c1c1c;
+}
+
+@media (max-width: 470px) {
+	.item {
+		width: 90px;
+	}
 }
 
 .index-module_num__j6XH3 {
@@ -150,7 +164,7 @@
 .count-button {
 	transform: rotateX(25deg) skewX(19deg);
 	color: black;
-	width: 115px;
+	width: 100%;
 	padding: 3px 10px 3px 10px;
 	font-size: 22px;
 	font-weight: 900;
@@ -193,7 +207,7 @@
 	position: absolute;
 	width: 100%;
 	bottom: 10px;
-	margin-bottom: 50px;
+	margin-bottom: 60px;
 	border-left: 100px solid transparent;
 	border-right: 100px solid transparent;
 	border-bottom: 232px solid #960018;
@@ -201,14 +215,14 @@
 }
 
 .bid-block {
-	width: 80%;
+	width: 60%;
 	background-color: yellow;
 	border-radius: 15px;
 	transform: perspective(90px) rotateX(15deg);
 	box-shadow: 0 4px 0 #cecf00;
 }
 
-.connector {
+/* .connector {
 	height: 20px;
 	width: 372px;
 	position: absolute;
@@ -218,11 +232,11 @@
 	opacity: 1;
 	border-radius: 5px;
 	border: 2px solid #1c1c1c;
-}
+} */
 
 .roof {
 	height: 20px;
-	width: 372px;
+	width: 67%;
 	position: absolute;
 	top: 135px;
 	left: 94px;
@@ -236,7 +250,59 @@
 	border-top-right-radius: 8px;
 }
 
+@media (max-width: 470px) {
+	.roof {
+		width: 58%;
+		left: 83px;
+	}
+}
+
 .bonus-amount {
 	color: #f8f8f8;
 	font-size: 25px;
+}
+
+@keyframes slideDown {
+	0% {
+		top: -50px; /* Начальная позиция (скрытый сверху) */
+	}
+	25% {
+		top: 0;
+	}
+	50% {
+		top: 0;
+	}
+	75% {
+		top: 0;
+	}
+	100% {
+		top: -50px; /* Середина анимации (показываем блок) */
+	}
+}
+
+.bonus-window {
+	width: 250px;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	height: 50px;
+	top: -50px;
+	background-color: #960018;
+	border-radius: 10px;
+	z-index: 999;
+	text-align: center;
+	animation-duration: 5s;
+}
+
+.bonus-window.show {
+	animation-name: slideDown;
+}
+
+.bonus-text {
+	margin: 0;
+	padding: 0;
+	font: 40px;
+	color: #f8f8f8;
+	font-weight: 500;
+	padding-top: 10px;
 }
