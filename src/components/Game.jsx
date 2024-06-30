@@ -10,14 +10,14 @@ import dizzy from '../assets/symbols/Dizzy.svg';
 import { BalanceContext } from '../context/BalanceContext';
 import { mapFromIconToNumbers } from './utils/MapFromIconsToNumbers';
 
-const BASE_URL = 'https://47f0-5-18-98-27.ngrok-free.app';
+const BASE_URL = 'https://0bad-5-18-162-20.ngrok-free.app';
 //const tg = window.Telegram.WebApp;
 
 const Game = () => {
 	const { currentBalance, deposit } = useContext(BalanceContext);
 	const [numbers, setNumbers] = useState([]);
 	const [bonus, setBonus] = useState(0);
-	const [userBalance, setUserBalance] = useState(0);
+	const [userBalance, setUserBalance] = useState(currentBalance);
 	const [winAmount, setWinAmount] = useState(0);
 	const [iconsByNumbersObj, setIconsByNumbersObj] = useState({});
 	const [count, setCount] = useState(1);
@@ -28,7 +28,7 @@ const Game = () => {
 	// const userId = tg.initDataUnsafe?.user?.id;
 	const userId = 509294090;
 
-	console.log(userId);
+	// console.log(userId);
 	const betValue = count;
 
 	const getNumbers = async (userId, betValue) => {
@@ -67,6 +67,7 @@ const Game = () => {
 	useEffect(() => {
 		if (!isSpinning && winAmount > 0) {
 			deposit(winAmount);
+			setUserBalance(winAmount + userBalance);
 			setWinAmount(0);
 		}
 	}, [isSpinning, winAmount, deposit]);
@@ -200,9 +201,9 @@ const Game = () => {
 							/>,
 						]}
 					/>
-					{/* <p className='bonus-amount'>
+					<p className='bonus-amount'>
 						{bonus !== null ? `Your Bonus: ${Math.floor(bonus)} USDT ! Hooray` : `No bonus :(`}
-					</p> */}
+					</p>
 				</div>
 			</div>
 			<div className='connector'></div>

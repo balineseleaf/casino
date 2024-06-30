@@ -1,7 +1,8 @@
 .wallet-container {
 	display: flex;
 	flex-direction: column;
-	width: 560px;
+	width: 100%;
+	gap: 160px;
 	margin: 0 auto;
 	background-color: #330d4a;
 	/* background-image: url('./../assets/bg_small.jpg'); */
@@ -20,8 +21,6 @@
 }
 
 .buttons-wallet {
-	position: absolute;
-	top: 60%;
 	transform: translateY(-50%);
 	margin-top: 10px;
 	display: flex;

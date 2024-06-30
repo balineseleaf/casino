@@ -1,9 +1,10 @@
 #root {
 	text-align: center;
+	height: 100vh;
 }
 
 .app {
-	height: 654px;
+	height: 100%;
 	background-color: #330d4a;
 	max-width: 560px;
 	position: relative;
